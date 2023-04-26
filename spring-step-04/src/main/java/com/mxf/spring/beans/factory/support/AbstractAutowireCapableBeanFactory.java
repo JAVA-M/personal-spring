@@ -27,6 +27,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         } catch (Exception e) {
             throw new BeansException("Instantiation of bean failed", e);
         }
+        applyPropertyValues(beanName, bean, beanDefinition);
         addSingleton(beanName, bean);
         return bean;
     }
@@ -36,13 +37,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         Class<?> beanClass = beanDefinition.getBeanClass();
         Constructor<?>[] declaredConstructors = beanClass.getDeclaredConstructors();
         for (Constructor ctor : declaredConstructors) {
-            outer: if (null != args && ctor.getParameterTypes().length == args.length) { // 该处只是简单实现，因为构造函数当参数熟顺序不一样时，能够形成重载
-                Class[] parameterTypes = ctor.getParameterTypes();
-                for (int i = 0; i < parameterTypes.length; i++) { // 验证构造器参数顺序
-                    if (!parameterTypes[i].getName().equals(args[i].getClass().getName())) {
-                        break outer;
-                    }
-                }
+            if (null != args && ctor.getParameterTypes().length == args.length) {
                 constructorToUse = ctor;
                 break;
             }
@@ -55,7 +50,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         Class<?> beanClass = beanDefinition.getBeanClass();
         Constructor<?>[] declaredConstructors = beanClass.getDeclaredConstructors();
         for (Constructor ctor : declaredConstructors) {
-            if (null != args && ctor.getParameterTypes().length == args.length) {
+            outer: if (null != args && ctor.getParameterTypes().length == args.length) { // 该处只是简单实现，因为构造函数当参数熟顺序不一样时，能够形成重载
+                Class[] parameterTypes = ctor.getParameterTypes();
+                for (int i = 0; i < parameterTypes.length; i++) { // 验证构造器参数顺序
+                    if (!parameterTypes[i].getName().equals(args[i].getClass().getName())) {
+                        break outer;
+                    }
+                }
                 constructorToUse = ctor;
                 break;
             }

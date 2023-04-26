@@ -5,36 +5,27 @@ package com.mxf.spring.test.bean;
  * @date 2023/4/21
  */
 public class UserService {
-    private String name;
+    private String uId;
 
-    private Integer age;
-
-    public UserService(String name) {
-        this.name = name;
-    }
-
-    public UserService(Integer age) {
-        this.age = age;
-    }
-
-    public UserService(String name, Integer age) {
-        this.name = name;
-        this.age = age;
-    }
+    private UserDao userDao;
 
     public void queryUserInfo() {
-        System.out.println("查询用户信息：" + this);
+        System.out.println("查询用户信息：" + userDao.queryUserName(uId));
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("");
-        if (name != null) {
-            sb.append("name: ").append(name);
-        }
-        if (age != null) {
-            sb.append(" age: ").append(age);
-        }
-        return sb.toString();
+    public String getUId() {
+        return uId;
+    }
+
+    public void setUId(String uId) {
+        this.uId = uId;
+    }
+
+    public UserDao getUserDao() {
+        return userDao;
+    }
+
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
     }
 }
