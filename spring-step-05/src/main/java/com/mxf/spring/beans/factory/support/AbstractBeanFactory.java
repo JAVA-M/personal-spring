@@ -1,4 +1,4 @@
-package com.mxf.spring.factory.support;
+package com.mxf.spring.beans.factory.support;
 
 import com.mxf.spring.beans.BeansException;
 import com.mxf.spring.beans.factory.BeanFactory;
@@ -20,6 +20,11 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         return doGetBean(name, args);
     }
 
+    @Override
+    public <T> T getBean(String name, Class<T> requiredType) throws BeansException {
+        return (T) getBean(name);
+    }
+
     protected <T> T doGetBean(final String name, final Object[] args) {
         Object bean = getSingleton(name);
         if (bean != null) {
@@ -33,4 +38,5 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
     protected abstract BeanDefinition getBeanDefinition(String beanName) throws BeansException;
 
     protected abstract Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException;
+
 }

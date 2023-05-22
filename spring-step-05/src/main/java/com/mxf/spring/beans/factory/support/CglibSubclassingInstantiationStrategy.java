@@ -1,4 +1,4 @@
-package com.mxf.spring.factory.support;
+package com.mxf.spring.beans.factory.support;
 
 import com.mxf.spring.beans.BeansException;
 import com.mxf.spring.beans.factory.config.BeanDefinition;

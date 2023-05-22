@@ -1,4 +1,4 @@
-package com.mxf.spring.factory.support;
+package com.mxf.spring.beans.factory.support;
 
 import com.mxf.spring.beans.BeansException;
 import com.mxf.spring.beans.factory.config.BeanDefinition;
@@ -15,10 +15,20 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
     private Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
 
     @Override
-    protected BeanDefinition getBeanDefinition(String beanName) throws BeansException {
+    public BeanDefinition getBeanDefinition(String beanName) throws BeansException {
         BeanDefinition beanDefinition = beanDefinitionMap.get(beanName);
         if (beanDefinition == null) throw new BeansException("No bean named '" + beanName + "' is defined");
         return beanDefinition;
+    }
+
+    @Override
+    public boolean containsBeanDefinition(String beanName) {
+        return false;
+    }
+
+    @Override
+    public String[] getBeanDefinitionNames() {
+        return new String[0];
     }
 
     @Override

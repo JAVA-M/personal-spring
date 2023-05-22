@@ -1,6 +1,6 @@
-package com.mxf.spring.factory.support;
+package com.mxf.spring.beans.factory.support;
 
-import com.mxf.spring.BeansException;
+import com.mxf.spring.beans.BeansException;
 import com.mxf.spring.core.io.Resource;
 import com.mxf.spring.core.io.ResourceLoader;
 

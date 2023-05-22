@@ -1,4 +1,4 @@
-package com.mxf.spring.factory.config;
+package com.mxf.spring.beans.factory.config;
 
 /**
  * @author manxingfu

@@ -1,4 +1,4 @@
-package com.mxf.spring;
+package com.mxf.spring.beans;
 
 /**
  * @author manxingfu

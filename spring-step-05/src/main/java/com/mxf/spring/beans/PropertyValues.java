@@ -1,4 +1,4 @@
-package com.mxf.spring;
+package com.mxf.spring.beans;
 
 import java.util.ArrayList;
 import java.util.List;
